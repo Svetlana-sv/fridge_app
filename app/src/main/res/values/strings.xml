@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">my Fridge</string>
+    <string name="app_name">My Fridge</string>
+    <string name="createFridgeButton">Добавить холодильник</string>
+
 </resources>
