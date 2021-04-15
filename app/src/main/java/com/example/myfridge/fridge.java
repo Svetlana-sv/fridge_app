@@ -20,5 +20,5 @@ public class fridge extends ConstraintLayout {
         fridgeName = (TextView) findViewById(R.id.fridgeName);
         fridgeName.setText(name);
     }
-    
+
 }
