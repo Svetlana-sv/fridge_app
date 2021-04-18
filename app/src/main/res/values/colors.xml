@@ -11,5 +11,6 @@
     <color name="primaryBarColor">#FF03DAC5</color>
     <color name="primaryButtonColor">#FF03DAC5</color>
     <color name="primaryBackColor">#8003DAC5</color>
+    <color name="errorColor">#FF0000</color>
 
 </resources>

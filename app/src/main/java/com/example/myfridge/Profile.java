@@ -21,7 +21,6 @@ public class Profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
         settingsBu = findViewById(R.id.settings);
         backBu = findViewById(R.id.back);
 
