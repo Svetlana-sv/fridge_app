@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton profileBu;
     private ImageButton cookBu;
     private LinearLayout fridges_layout;
-    private ArrayList<fridge> fridges;
+    //private ArrayList<fridge> fridges;
     private ScrollView fridgesSV;
 
     //private final static String FRIDGES_SYNC_FILE_NAME = "fridgesSyncInfo.csv";
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        fridges = new ArrayList<fridge>();
+        //fridges = new ArrayList<fridge>();
         this.cookBu = (ImageButton) findViewById(R.id.cook);
         this.profileBu = (ImageButton) findViewById(R.id.profile);
         this.mailBu = (ImageButton) findViewById(R.id.mail);
@@ -84,7 +84,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, Profile.class));
             }
         });
+
         ReadFridgeFiles(FRIDGES_FILE_NAME);
+
         //ReadFridgeFiles(FRIDGES_SYNC_FILE_NAME);
     }
 
@@ -125,13 +127,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onLongClick(View v) {
                 if (v.getClass() == fridge.class) {
-
                     removeFridge(((fridge) v).getFridgeId());
                 }
                 return false;
             }
         });
-        fridges.add(myFridge);
+        //fridges.add(myFridge);
         fridges_layout.addView(myFridge, layoutParams);
 
     }
@@ -161,19 +162,20 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        for (fridge item : fridges) {
+//        for (fridge item : fridges) {
+//
+//            if (item.getFridgeId() == fridgeId) {
+//                fridges.remove(item);
+//
+//                continue;
+//            }
+//
+//            if (item.getFridgeId() > fridgeId) item.setFridgeId(item.getFridgeId() - 1);
+//            //fridges_layout.addView(item,layoutParams);
+//        }
 
-            if (item.getFridgeId() == fridgeId) {
-                fridges.remove(item);
-
-                continue;
-            }
-
-            if (item.getFridgeId() > fridgeId) item.setFridgeId(item.getFridgeId() - 1);
-            //fridges_layout.addView(item,layoutParams);
-        }
         Toast.makeText(getApplicationContext(), ""+fridgeId, Toast.LENGTH_SHORT).show();
-        //fridges_layout.removeViewAt(fridgeId);
+        //fridges_layout.removeAllViews();
     }
 
     @Override
@@ -205,7 +207,15 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-                fridges.add(myFridge);
+                myFridge.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        fridges_layout.removeAllViews();
+                        return false;
+                    }
+                });
+
+                //fridges.add(myFridge);
                 fridges_layout.addView(myFridge, layoutParams);
             }
             in.close();
