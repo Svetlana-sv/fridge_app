@@ -126,18 +126,17 @@ public class MainActivity extends AppCompatActivity {
         myFridge.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                if (v.getClass() == fridge.class) {
-                    removeFridge(((fridge) v).getFridgeId());
-                }
+                fridges_layout.removeView(v);
+                if (v.getClass() == fridge.class)
+                dropFridgeInfo(((fridge) v).getFridgeId());
                 return false;
             }
         });
-        //fridges.add(myFridge);
         fridges_layout.addView(myFridge, layoutParams);
 
     }
 
-    private void removeFridge(int fridgeId) {
+    private void dropFridgeInfo(int fridgeId) {
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(
                     getApplicationContext().openFileInput(FRIDGES_FILE_NAME)));
@@ -161,21 +160,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-//        for (fridge item : fridges) {
-//
-//            if (item.getFridgeId() == fridgeId) {
-//                fridges.remove(item);
-//
-//                continue;
-//            }
-//
-//            if (item.getFridgeId() > fridgeId) item.setFridgeId(item.getFridgeId() - 1);
-//            //fridges_layout.addView(item,layoutParams);
-//        }
-
-        Toast.makeText(getApplicationContext(), ""+fridgeId, Toast.LENGTH_SHORT).show();
-        //fridges_layout.removeAllViews();
     }
 
     @Override
@@ -201,21 +185,13 @@ public class MainActivity extends AppCompatActivity {
                 myFridge.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
+                        fridges_layout.removeView(v);
                         if (v.getClass() == fridge.class)
-                            removeFridge(((fridge) v).getFridgeId());
-                        return false;
+                            dropFridgeInfo(((fridge) v).getFridgeId());
+                        return true;
                     }
                 });
 
-                myFridge.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-                        fridges_layout.removeAllViews();
-                        return false;
-                    }
-                });
-
-                //fridges.add(myFridge);
                 fridges_layout.addView(myFridge, layoutParams);
             }
             in.close();
