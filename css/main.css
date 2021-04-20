@@ -1,0 +1,227 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  font-size: 14px;
+  background: #fff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+h2 {
+  font-size: 34px;
+  text-shadow: 3px 3px 4px rgba(50, 50, 50, 0.25);
+  text-align: center;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+div,
+header,
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a span {
+  transition: 0.3s;
+}
+
+.main-content {
+  width: 1200px;
+  flex-direction: column;
+}
+
+
+span {
+  font-size: 18px;
+}
+
+.page {
+  width: 100%;
+}
+
+.page1 {
+  align-items: flex-start;
+  background: #00ecde;
+  box-shadow: 0 1px 10px 0px rgba(50, 50, 50, 0.75);
+}
+
+.page1 header {
+  width: 100%;
+  margin: 25px;
+  justify-content: space-between;
+}
+
+.page1 header .logo span {
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
+  font-size: 28px;
+}
+
+.page1 header .ul {
+  width: 60%;
+  min-width: 40%;
+  justify-content: space-between;
+}
+
+.page1 header .ul .li {
+  transition: 0.3s;
+}
+
+.page1 header .ul .li:hover {
+  font-size: 28px;
+}
+
+.page3 .main-content {
+  margin-top: 150px;
+}
+
+.page3 .main-content>span {
+  margin-top: 50px;
+  margin-bottom: 100px;
+  text-align: center;
+  max-width: 1000px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.061);
+  padding: 15px;
+  border-radius: 15px;
+}
+
+.page2 .main-content {
+  margin-top: 100px;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.page2 .main-content img {
+  width: auto;
+  height: 500px;
+  position: relative;
+}
+.page2 .main-content .ul {
+  flex-direction: column;
+  width: 400px;
+  margin-left: 60px;
+}
+.page2 .main-content .ul span {
+  text-align: center;
+}
+
+.page4 .main-content {
+  margin-top: 150px;
+}
+
+.page4 .main-content>span {
+  margin-top: 20px;
+  text-align: center;
+  min-width: 700px;
+  max-width: 1000px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.061);
+  padding: 15px;
+  border-radius: 15px;
+}
+
+.page5 .main-content {
+  margin-top: 150px;
+}
+
+.page5 .main-content .ul {
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.page5 .main-content .ul .li {
+  margin-top: 10px;
+}
+
+.page5 .main-content .ul .li span {
+  text-align: center;
+}
+
+.page5 .main-content .ul .li-done span {
+  text-decoration: line-through;
+}
+
+.page5 .main-content .ul .li-worked span {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.page6 {
+  background: #00ecde;
+  margin-top: 50px;
+}
+
+.page6 footer {
+  margin-top: 20px;
+  flex-direction: column;
+}
+
+.page6 footer h3 {
+  text-align: center;
+}
+
+.page6 footer .ul {
+  flex-direction: column;
+}
+
+.page6 footer .ul .li {
+  margin-top: 25px;
+}
+
+.page6 footer .ul .li span {
+  transition: 0.3s;
+}
+
+.page6 footer .ul .li a:hover span {
+  font-size: 20px;
+}
+
+.page6 footer span {
+  margin: 50px 0 10px 0;
+}
+
+@media (max-width: 980px) {
+  .page1 header {
+    flex-direction: column;
+  }
+
+  .page1 .main-content header .ul {
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .page1 .main-content header .ul .li-scaled {
+    margin-top: 20px;
+
+  }
+
+  .page2 .main-content .ul {
+    width: 80%;
+    margin: 0;
+  }
+
+  .page2 .main-content img {
+    max-width: 500px;
+  }
+}
