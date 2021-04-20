@@ -1,8 +1,5 @@
 package com.example.myfridge;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -18,6 +15,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -25,7 +25,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,27 +33,25 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton profileBu;
     private ImageButton cookBu;
     private LinearLayout fridges_layout;
-    //private ArrayList<fridge> fridges;
     private ScrollView fridgesSV;
 
-    //private final static String FRIDGES_SYNC_FILE_NAME = "fridgesSyncInfo.csv";
-    private final static String FRIDGES_FILE_NAME = "fridgesInfo.csv";
+    public final static String FRIDGES_FILE_NAME = "fridgesInfo.csv";
+    public static AppCompatActivity appCompatActivity;
     private LinearLayout.LayoutParams layoutParams;
     private String fridgeName = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //fridges = new ArrayList<fridge>();
+        appCompatActivity = this;
         this.cookBu = (ImageButton) findViewById(R.id.cook);
         this.profileBu = (ImageButton) findViewById(R.id.profile);
         this.mailBu = (ImageButton) findViewById(R.id.mail);
         this.fridges_layout = (LinearLayout) findViewById(R.id.fridges);
         this.createFridge = (Button) findViewById(R.id.createFridge);
         this.fridgesSV = (ScrollView) findViewById(R.id.fridgesSV);
-
-
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         layoutParams.setMargins(0, 10, 0, 30);
 
@@ -80,14 +77,12 @@ public class MainActivity extends AppCompatActivity {
         profileBu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(getApplicationContext(), "go to profile", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MainActivity.this, Profile.class));
             }
         });
 
         ReadFridgeFiles(FRIDGES_FILE_NAME);
 
-        //ReadFridgeFiles(FRIDGES_SYNC_FILE_NAME);
     }
 
     private void addNewFridge() {
@@ -123,44 +118,11 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             Toast.makeText(getApplicationContext(), "ACCESS ERROR", Toast.LENGTH_SHORT).show();
         }
-        myFridge.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                fridges_layout.removeView(v);
-                if (v.getClass() == fridge.class)
-                dropFridgeInfo(((fridge) v).getFridgeId());
-                return false;
-            }
-        });
+
         fridges_layout.addView(myFridge, layoutParams);
 
     }
 
-    private void dropFridgeInfo(int fridgeId) {
-        try {
-            BufferedReader in = new BufferedReader(new InputStreamReader(
-                    getApplicationContext().openFileInput(FRIDGES_FILE_NAME)));
-            String line;
-            StringBuilder rows = new StringBuilder();
-            while ((line = in.readLine()) != null) {
-                String[] attrs = line.split(",");
-                if (Integer.parseInt(attrs[0]) == fridgeId) continue;
-                if (Integer.parseInt(attrs[0]) > fridgeId)
-                    attrs[0] = "" + (Integer.parseInt(attrs[0]) - 1);
-
-                rows.append(attrs[0] + "," + attrs[1] + "," + "\n");
-            }
-
-            FileOutputStream fos = openFileOutput(FRIDGES_FILE_NAME, MODE_PRIVATE);
-            fos.write(rows.toString().getBytes());
-            fos.close();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     protected void onDestroy() {
@@ -181,16 +143,6 @@ public class MainActivity extends AppCompatActivity {
             while ((line = in.readLine()) != null) {
                 String[] attrs = line.split(",");
                 fridge myFridge = new fridge(getApplicationContext(), attrs[1], Integer.parseInt(attrs[0]));
-
-                myFridge.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-                        fridges_layout.removeView(v);
-                        if (v.getClass() == fridge.class)
-                            dropFridgeInfo(((fridge) v).getFridgeId());
-                        return true;
-                    }
-                });
 
                 fridges_layout.addView(myFridge, layoutParams);
             }
@@ -213,7 +165,8 @@ public class MainActivity extends AppCompatActivity {
         dialog.setOwnerActivity(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_activity);
-        TextView title = (TextView) dialog.findViewById(R.id.dialog_title);
+        dialog.getWindow().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.fridge_back, null));
+        TextView title = (TextView) dialog.findViewById(R.id.drop_dialog_title);
 
         EditText input_name = (EditText) dialog.findViewById(R.id.DialogInput);
         Button OK = (Button) dialog.findViewById(R.id.dialog_accept);
@@ -239,9 +192,7 @@ public class MainActivity extends AppCompatActivity {
                 dialog.cancel();
             }
         });
-        dialog.getWindow().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.fridge_back, null));
+
         dialog.show();
     }
-
-
 }

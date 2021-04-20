@@ -10,5 +10,8 @@
     <string name="reject">Отмена</string>
     <string name="accept">Принять</string>
     <string name="ChooseFridgeName">Впишите название для холодильника:</string>
+    <string name="DropFridgeName">Вы действительно хотите удалить холодильник</string>
+    <string name="DropFridgeAccept">Да</string>
+    <string name="DropFridgeReject">Нет</string>
 
 </resources>
