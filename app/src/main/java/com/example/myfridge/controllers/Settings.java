@@ -13,7 +13,7 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        backBu = findViewById(R.id.backToProfile);
+        backBu = findViewById(R.id.backToMain);
 
         backBu.setOnClickListener(new View.OnClickListener() {
             @Override

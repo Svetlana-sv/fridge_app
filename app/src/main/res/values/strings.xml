@@ -10,8 +10,15 @@
     <string name="reject">Отмена</string>
     <string name="accept">Принять</string>
     <string name="ChooseFridgeName">Впишите название для холодильника:</string>
-    <string name="DropFridgeName">Вы действительно хотите удалить холодильник</string>
+    <string name="DropFridgeName">Вы действительно хотите удалить </string>
     <string name="DropFridgeAccept">Да</string>
     <string name="DropFridgeReject">Нет</string>
+    <string name="addNewFood">Добавить продукт</string>
+    <string name="SearchHint">Поиск по продуктам</string>
+    <string name="ERROR_INPUT">Впишите название для холодильника: (Не используйте символы точек с запятой и кавычек)</string>
+    <string name="END_DATE_INPUT">Годен до</string>
+    <string name="START_DATE_INPUT">Выбрать дату изготовления</string>
+    <string name="DIALOG_FOOD_NAME">Название продукта</string>
+    <string name="INPUT_QUONTITY_HINT">Обьем (Не обязательно)</string>
 
 </resources>

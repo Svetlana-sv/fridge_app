@@ -1,4 +1,4 @@
-package com.example.myfridge;
+package com.example.myfridge.controllers;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -17,6 +17,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
+
+import com.example.myfridge.Profile;
+import com.example.myfridge.R;
+import com.example.myfridge.templates.fridge;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -50,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
         this.profileBu = (ImageButton) findViewById(R.id.profile);
         this.mailBu = (ImageButton) findViewById(R.id.mail);
         this.fridges_layout = (LinearLayout) findViewById(R.id.fridges);
-        this.createFridge = (Button) findViewById(R.id.createFridge);
-        this.fridgesSV = (ScrollView) findViewById(R.id.fridgesSV);
+        this.createFridge = (Button) findViewById(R.id.createFood);
+        this.fridgesSV = (ScrollView) findViewById(R.id.foodSV);
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         layoutParams.setMargins(0, 10, 0, 30);
 
@@ -101,11 +105,11 @@ public class MainActivity extends AppCompatActivity {
             }
             if (rows.length() == 0) {
                 myFridge = new fridge(getApplicationContext(), fridgeName, 0);
-                rows.append("0," + fridgeName + ",");
+                rows.append("0;" + fridgeName + ";");
             } else {
-                String[] attrs = lastAppendedRow.split(",");
+                String[] attrs = lastAppendedRow.split(";");
                 myFridge = new fridge(getApplicationContext(), fridgeName, Integer.parseInt(attrs[0]) + 1);
-                rows.append((Integer.parseInt(attrs[0]) + 1) + "," + fridgeName + ",");
+                rows.append((Integer.parseInt(attrs[0]) + 1) + ";" + fridgeName + ";");
             }
             in.close();
 
@@ -118,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             Toast.makeText(getApplicationContext(), "ACCESS ERROR", Toast.LENGTH_SHORT).show();
         }
-
         fridges_layout.addView(myFridge, layoutParams);
 
     }
@@ -141,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                     getApplicationContext().openFileInput(FILE_NAME)));
             String line;
             while ((line = in.readLine()) != null) {
-                String[] attrs = line.split(",");
+                String[] attrs = line.split(";");
                 fridge myFridge = new fridge(getApplicationContext(), attrs[1], Integer.parseInt(attrs[0]));
 
                 fridges_layout.addView(myFridge, layoutParams);
@@ -168,20 +171,24 @@ public class MainActivity extends AppCompatActivity {
         dialog.getWindow().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.fridge_back, null));
         TextView title = (TextView) dialog.findViewById(R.id.drop_dialog_title);
 
-        EditText input_name = (EditText) dialog.findViewById(R.id.DialogInput);
-        Button OK = (Button) dialog.findViewById(R.id.dialog_accept);
-        Button BACK = (Button) dialog.findViewById(R.id.dialog_reject);
+        EditText input_name = (EditText) dialog.findViewById(R.id.dialog_input_quantity);
+        Button OK = (Button) dialog.findViewById(R.id.dialog_add_food_accept);
+        Button BACK = (Button) dialog.findViewById(R.id.dialog_add_food_reject);
 
 
         OK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (input_name.getText().length() > 0) {
+                if (input_name.getText().length() > 0
+                        && !input_name.getText().toString().contains("\"")
+                            && !input_name.getText().toString().contains("'")
+                                && !input_name.getText().toString().contains(";")) {
                     fridgeName = "" + input_name.getText();
                     addNewFridge();
                     dialog.cancel();
                 } else {
                     title.setTextColor(ResourcesCompat.getColor(getResources(), R.color.errorColor, null));
+                    title.setText(getResources().getString(R.string.ERROR_INPUT));
                     title.setTypeface(title.getTypeface(), Typeface.BOLD);
                 }
             }

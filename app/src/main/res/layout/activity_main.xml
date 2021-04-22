@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".controllers.MainActivity">
 
     <Button
-        android:id="@+id/createFridge"
+        android:id="@+id/createFood"
         android:layout_width="230dp"
         android:layout_height="35dp"
         android:layout_marginBottom="15dp"
@@ -77,7 +77,7 @@
             app:layout_constraintVertical_bias="0.523" />
 
         <TextView
-            android:id="@+id/appLogo"
+            android:id="@+id/frigde_name_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
@@ -94,14 +94,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
-        android:id="@+id/fridgesSV"
+        android:id="@+id/foodSV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="56dp"
         android:layout_marginBottom="5dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/createFridge"
+        app:layout_constraintBottom_toTopOf="@+id/createFood"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

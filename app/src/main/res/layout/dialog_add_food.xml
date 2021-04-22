@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="480dp">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.0">
+
+
+        <EditText
+            android:id="@+id/dialog_input_quantity"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:ems="10"
+            android:textSize="16sp"
+            android:hint="@string/INPUT_QUONTITY_HINT"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dialog_input_food_name"
+            app:layout_constraintVertical_bias="0.089" />
+
+        <EditText
+            android:id="@+id/dialog_input_food_name"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:ems="10"
+            android:hint="@string/DIALOG_FOOD_NAME"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.733"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.333" />
+
+        <Button
+            android:id="@+id/dialog_add_food_accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/accept"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/dialog_add_food_reject" />
+
+        <Button
+            android:id="@+id/dialog_add_food_reject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reject"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/dialog_add_food_accept"
+            app:layout_constraintTop_toBottomOf="@+id/dialog_input_end_date" />
+
+        <Button
+            android:id="@+id/dialog_input_start_date"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/START_DATE_INPUT"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dialog_input_quantity"
+            app:layout_constraintVertical_bias="0.104" />
+
+        <Button
+            android:id="@+id/dialog_input_end_date"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/END_DATE_INPUT"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dialog_input_start_date"
+            app:layout_constraintVertical_bias="0.155" />
+
+        <ImageButton
+            android:id="@+id/dialog_foto_btn"
+            android:layout_width="88dp"
+            android:layout_height="68dp"
+            android:background="@drawable/camera"
+            app:layout_constraintBottom_toBottomOf="@+id/dialog_add_food_reject"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.099" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
