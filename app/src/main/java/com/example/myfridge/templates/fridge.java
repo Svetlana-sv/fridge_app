@@ -103,7 +103,7 @@ public class fridge extends ConstraintLayout{
                 if (Integer.parseInt(attrs[0]) > this.id)
                     attrs[0] = "" + (Integer.parseInt(attrs[0]) - 1);
 
-                rows.append(attrs[0] + ";" + attrs[1] + ";" + "\n");
+                rows.append(String.format("%s;%s;\n", attrs[0], attrs[1]));
             }
 
             FileOutputStream fos = super.getContext().openFileOutput(FRIDGES_FILE_NAME, MODE_PRIVATE);

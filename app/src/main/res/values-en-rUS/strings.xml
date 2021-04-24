@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Fridge</string>
+    <string name="createFridgeButton">Add fridge</string>
+    <string name="Save">a</string>
+    <string name="password">a</string>
+    <string name="email">a</string>
+    <string name="surname">a</string>
+    <string name="secondName">a</string>
+    <string name="name">a</string>
+    <string name="reject">a</string>
+    <string name="accept">a</string>
+    <string name="ChooseFridgeName">a</string>
+    <string name="DropFridgeName">a</string>
+    <string name="DropFridgeAccept">a</string>
+    <string name="DropFridgeReject">a</string>
+    <string name="addNewFood">a</string>
+    <string name="SearchHint">a</string>
+    <string name="ERROR_INPUT">a</string>
+    <string name="END_DATE_INPUT">a</string>
+    <string name="START_DATE_INPUT">a</string>
+    <string name="DIALOG_FOOD_NAME">a</string>
+    <string name="INPUT_QUONTITY_HINT">a</string>
+    <string name="TITLE_COLUMN">1</string>
+    <string name="QUANTITI_COLUMN">1</string>
+    <string name="DATE_COLUMN">1</string>
+</resources>

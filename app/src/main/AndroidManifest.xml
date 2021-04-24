@@ -13,9 +13,9 @@
         android:roundIcon="@mipmap/logo2"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyFridge">
-        <activity android:name=".Profile"></activity>
+        <activity android:name=".controllers.Profile"></activity>
         <activity android:name=".controllers.FoodActivity"></activity>
-        <activity android:name=".Settings"></activity>
+        <activity android:name=".controllers.Settings"></activity>
 
         <activity android:name=".controllers.MainActivity">
             <intent-filter>

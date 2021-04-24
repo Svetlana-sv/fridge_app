@@ -9,9 +9,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="primaryTextColor">#000000</color>
     <color name="primaryBarColor">#FF03DAC5</color>
-    <color name="primaryButtonColor">#FF03DAC5</color>
+    <color name="primaryButtonColor">#8003DAC5</color>
     <color name="primaryBackColor">#8003DAC5</color>
     <color name="errorColor">#FF0000</color>
-    <color name="secondBackColor">#FFFFFF</color>
+    <color name="secondBackColor">#fafafa</color>
 
 </resources>

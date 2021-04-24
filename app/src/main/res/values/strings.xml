@@ -20,5 +20,8 @@
     <string name="START_DATE_INPUT">Выбрать дату изготовления</string>
     <string name="DIALOG_FOOD_NAME">Название продукта</string>
     <string name="INPUT_QUONTITY_HINT">Обьем (Не обязательно)</string>
+    <string name="TITLE_COLUMN">Название</string>
+    <string name="QUANTITI_COLUMN">Количество</string>
+    <string name="DATE_COLUMN">Годен до</string>
 
 </resources>

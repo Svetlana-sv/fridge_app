@@ -18,7 +18,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
-import com.example.myfridge.Profile;
 import com.example.myfridge.R;
 import com.example.myfridge.templates.fridge;
 
@@ -105,11 +104,11 @@ public class MainActivity extends AppCompatActivity {
             }
             if (rows.length() == 0) {
                 myFridge = new fridge(getApplicationContext(), fridgeName, 0);
-                rows.append("0;" + fridgeName + ";");
+                rows.append(String.format("0;%s;", fridgeName));
             } else {
                 String[] attrs = lastAppendedRow.split(";");
                 myFridge = new fridge(getApplicationContext(), fridgeName, Integer.parseInt(attrs[0]) + 1);
-                rows.append((Integer.parseInt(attrs[0]) + 1) + ";" + fridgeName + ";");
+                rows.append(String.format("%d;%s;", Integer.parseInt(attrs[0]) + 1, fridgeName));
             }
             in.close();
 

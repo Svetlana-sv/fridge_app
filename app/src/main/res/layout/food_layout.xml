@@ -9,15 +9,15 @@
 
     <TextView
         android:id="@+id/food_title"
-        android:textColor="@color/primaryTextColor"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="clip_horizontal|center|center_vertical"
         android:text="TextView"
+        android:textColor="@color/primaryTextColor"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintEnd_toStartOf="@+id/food_quantity"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.51" />
@@ -26,13 +26,16 @@
         android:id="@+id/food_quantity"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:textColor="@color/primaryTextColor"
         android:gravity="clip_horizontal|center|center_vertical"
         android:text="TextView"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:background="@drawable/border_left_right"
+        android:textColor="@color/primaryTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/food_end_date"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/food_title"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -40,12 +43,13 @@
         android:id="@+id/food_end_date"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:textColor="@color/primaryTextColor"
         android:gravity="clip_horizontal|center|center_vertical"
         android:text="TextView"
+        android:textColor="@color/primaryTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintStart_toEndOf="@+id/food_quantity"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
