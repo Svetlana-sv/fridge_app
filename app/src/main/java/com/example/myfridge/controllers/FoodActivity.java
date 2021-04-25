@@ -47,8 +47,11 @@ public class FoodActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_food_layout);
         Intent intent = getIntent();
+
+        Toast.makeText(getApplicationContext(), "create", Toast.LENGTH_SHORT).show();
 
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
@@ -59,7 +62,7 @@ public class FoodActivity extends AppCompatActivity {
         this.food_layout = (LinearLayout) findViewById(R.id.food_layout);
         this.input = (SearchView) findViewById(R.id.food_search);
         Button addFoodBtn = (Button) findViewById(R.id.createFood);
-        TextView title_fridge_name = (TextView) findViewById(R.id.frigde_name_title);
+        TextView title_fridge_name = (TextView) findViewById(R.id.frigde_name_title_food_card);
         ArrayList<String> products = intent.getStringArrayListExtra("products");
 
 
@@ -74,34 +77,6 @@ public class FoodActivity extends AppCompatActivity {
             //id; name; quantity; end_date;start_date;smth
             food_layout.addView(new Food(getContext(), row[1], row[2], row[3], row[4]));
         }
-
-
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-        food_layout.addView(new Food(getContext(), "row[1]a", "row[2]", "26.4.2021", "row[4]"));
-
-
 
         input.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -312,5 +287,11 @@ public class FoodActivity extends AppCompatActivity {
         food_layout = null;
         System.gc();
         Toast.makeText(getApplicationContext(), "Stopped", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Toast.makeText(getApplicationContext(), "RESUMED", Toast.LENGTH_SHORT).show();
     }
 }

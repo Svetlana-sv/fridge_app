@@ -47,7 +47,7 @@
             app:layout_constraintVertical_bias="0.541" />
 
         <TextView
-            android:id="@+id/frigde_name_title"
+            android:id="@+id/frigde_name_title_food_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
@@ -146,7 +146,7 @@
         app:layout_constraintTop_toBottomOf="@+id/profilePic" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/food_card_title"
         android:layout_width="244dp"
         android:layout_height="46dp"
         android:ems="10"
@@ -157,10 +157,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/food_card_t" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/food_card_t"
         android:layout_width="244dp"
         android:layout_height="20dp"
         android:layout_marginTop="16dp"
@@ -171,7 +171,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName5"
+        android:id="@+id/food_card_quantity"
         android:layout_width="244dp"
         android:layout_height="46dp"
         android:ems="10"
@@ -193,7 +193,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+        app:layout_constraintTop_toBottomOf="@+id/food_card_title" />
 
     <Button
         android:id="@+id/createFood"

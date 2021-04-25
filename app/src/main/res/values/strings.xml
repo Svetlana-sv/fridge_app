@@ -23,5 +23,8 @@
     <string name="TITLE_COLUMN">Название</string>
     <string name="QUANTITI_COLUMN">Количество</string>
     <string name="DATE_COLUMN">Годен до</string>
+    <string name="REDACT">Редактировать</string>
+    <string name="PRODUCT_NAME">Название продукта</string>
+    <string name="PRODUCTION_DATE">Дата производства</string>
 
 </resources>

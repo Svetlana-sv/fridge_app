@@ -1,15 +1,28 @@
 package com.example.myfridge.templates;
 
 import android.content.Context;
+import android.content.Intent;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.myfridge.R;
+import com.example.myfridge.controllers.FoodActivity;
+import com.example.myfridge.controllers.FoodCardActivity;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class Food extends ConstraintLayout {
 
@@ -60,6 +73,22 @@ public class Food extends ConstraintLayout {
             quantity_tv.setText(String.format("%s..", quantity.substring(0, 14)));
         else
             quantity_tv.setText(quantity);
+
+        this.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v.getClass() == Food.class) {
+                    Intent intent = new Intent(v.getContext(), FoodCardActivity.class);
+                    intent.putExtra("title", ((Food) v).getTitle());
+                    intent.putExtra("quantity", ((Food) v).getQuantity());
+                    intent.putExtra("start_date", ((Food) v).getStart_date());
+                    intent.putExtra("end_date", ((Food) v).getEnd_date());
+
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    v.getContext().startActivity(intent);
+                }
+            }
+        });
 
     }
 
