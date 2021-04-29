@@ -15,7 +15,7 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        backBu = findViewById(R.id.backToMain);
+        backBu = findViewById(R.id.backToFridgeActivity);
 
         backBu.setOnClickListener(new View.OnClickListener() {
             @Override

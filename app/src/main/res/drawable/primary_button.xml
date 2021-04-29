@@ -4,9 +4,9 @@
         <shape android:shape="rectangle">
             <corners android:radius="20dp"/>
             <stroke
-                android:width="0.5dp"
-                android:color="@color/primaryButtonColor"/>
-            <solid android:color="@color/primaryButtonColor"/>
+                android:width="0.7dp"
+                android:color="@color/black"/>
+            <solid android:color="@color/secondBackColor"/>
             <padding android:left="10dp" android:right="10dp" android:top="5dp" android:bottom="5dp"/>
         </shape>
     </item>

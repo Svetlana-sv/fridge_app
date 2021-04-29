@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         this.profileBu = (ImageButton) findViewById(R.id.profile);
         this.mailBu = (ImageButton) findViewById(R.id.mail);
         this.fridges_layout = (LinearLayout) findViewById(R.id.fridges);
-        this.createFridge = (Button) findViewById(R.id.createFood);
+        this.createFridge = (Button) findViewById(R.id.save);
         this.fridgesSV = (ScrollView) findViewById(R.id.foodSV);
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         layoutParams.setMargins(0, 10, 0, 30);

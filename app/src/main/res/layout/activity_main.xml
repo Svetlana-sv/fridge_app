@@ -7,7 +7,7 @@
     tools:context=".controllers.MainActivity">
 
     <Button
-        android:id="@+id/createFood"
+        android:id="@+id/save"
         android:layout_width="230dp"
         android:layout_height="35dp"
         android:layout_marginBottom="15dp"
@@ -101,7 +101,7 @@
         android:layout_marginBottom="5dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/createFood"
+        app:layout_constraintBottom_toTopOf="@+id/save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

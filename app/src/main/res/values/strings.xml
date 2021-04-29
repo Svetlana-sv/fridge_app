@@ -17,7 +17,7 @@
     <string name="SearchHint">Поиск по продуктам</string>
     <string name="ERROR_INPUT">Впишите название для холодильника: (Не используйте символы точек с запятой и кавычек)</string>
     <string name="END_DATE_INPUT">Годен до</string>
-    <string name="START_DATE_INPUT">Выбрать дату изготовления</string>
+    <string name="START_DATE_INPUT">Дата изготовления</string>
     <string name="DIALOG_FOOD_NAME">Название продукта</string>
     <string name="INPUT_QUONTITY_HINT">Обьем (Не обязательно)</string>
     <string name="TITLE_COLUMN">Название</string>
@@ -26,5 +26,6 @@
     <string name="REDACT">Редактировать</string>
     <string name="PRODUCT_NAME">Название продукта</string>
     <string name="PRODUCTION_DATE">Дата производства</string>
+    <string name="NOT_STATED">Не задано</string>
 
 </resources>

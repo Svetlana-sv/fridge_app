@@ -51,7 +51,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/backToMain"
+            android:id="@+id/backToFridgeActivity"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginEnd="12dp"
@@ -98,7 +98,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/PRODUCT_NAME"
-            app:layout_constraintBottom_toTopOf="@+id/createFood"
+            app:layout_constraintBottom_toTopOf="@+id/save"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.2"
             app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +109,6 @@
             android:id="@+id/food_card_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:ems="10"
             android:gravity="center_horizontal"
             android:inputType="textPersonName"
@@ -124,7 +123,6 @@
             android:id="@+id/food_card_quantity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:ems="10"
             android:gravity="center_horizontal"
             android:inputType="textPersonName"
@@ -146,21 +144,6 @@
             app:layout_constraintStart_toStartOf="@+id/food_card_title"
             app:layout_constraintTop_toBottomOf="@+id/food_card_title" />
 
-        <EditText
-            android:id="@+id/food_card_prod_date"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:gravity="center_horizontal"
-            android:inputType="textPersonName"
-            android:text="prod date"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/textView5"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
         <TextView
             android:id="@+id/textView4"
             android:layout_width="0dp"
@@ -172,21 +155,6 @@
             app:layout_constraintStart_toStartOf="@+id/food_card_quantity"
             app:layout_constraintTop_toBottomOf="@+id/food_card_quantity" />
 
-
-        <EditText
-            android:id="@+id/food_card_end_date"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:gravity="center_horizontal"
-            android:inputType="textPersonName"
-            android:text="prod date"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.25"
-            app:layout_constraintStart_toStartOf="@+id/textView6"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
         <TextView
             android:id="@+id/textView6"
@@ -207,6 +175,7 @@
             android:fontFamily="@font/bowlby_one_sc"
             android:gravity="center|center_vertical"
             android:text="@string/REDACT"
+            android:textAllCaps="true"
             android:textColor="@color/primaryTextColor"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -218,7 +187,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <Button
-            android:id="@+id/createFood"
+            android:id="@+id/save"
             android:layout_width="230dp"
             android:layout_height="35dp"
             android:background="@drawable/primary_button"
@@ -231,6 +200,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7"
             app:layout_constraintVertical_bias="0.75" />
+
+        <Button
+            android:id="@+id/food_card_end_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/NOT_STATED"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <Button
+            android:id="@+id/food_card_prod_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/NOT_STATED"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

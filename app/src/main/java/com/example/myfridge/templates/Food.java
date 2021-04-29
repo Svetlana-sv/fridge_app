@@ -2,27 +2,15 @@ package com.example.myfridge.templates;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.myfridge.R;
-import com.example.myfridge.controllers.FoodActivity;
 import com.example.myfridge.controllers.FoodCardActivity;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class Food extends ConstraintLayout {
 
@@ -30,20 +18,19 @@ public class Food extends ConstraintLayout {
     private String quantity;
     private String end_date;
     private String start_date;
+    private int fridgeId;
+    private int foodid;
 
-    public Food(Context context, String title, String quantity, String end_date, String start_date) {
+    public Food(Context context, String title, String quantity, String end_date, String start_date,int id,int foodid) {
         super(context);
         inflate(context, R.layout.food_layout, this);
-
-        while (end_date.length()<10)
-            end_date= String.format(" %s ", end_date);
 
         this.title = title;
         this.quantity = quantity;
         this.start_date = start_date;
         this.end_date = end_date;
-
-
+        this.fridgeId = id;
+        this.foodid = foodid;
 
         //SimpleDateFormat formatter = new SimpleDateFormat("MM.dd.yyyy");
 
@@ -59,11 +46,36 @@ public class Food extends ConstraintLayout {
 //                parseException.printStackTrace();
 //            }
 //        }
-
-
         TextView title_tv = (TextView) findViewById(R.id.food_title);
         TextView end_date_tv = (TextView) findViewById(R.id.food_quantity);
         TextView quantity_tv = (TextView) findViewById(R.id.food_end_date);
+
+        if (end_date.contains("."))
+        this.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int eventAction = event.getAction();
+
+                switch (eventAction) {
+                    case MotionEvent.ACTION_DOWN:
+                        v.setBackground(getResources().getDrawable(R.drawable.food_click_style));
+                        end_date_tv.setBackground(null);
+                        //v.getBackground().setColorFilter(getResources().getColor(R.color.primaryBarColor), PorterDuff.Mode.SRC_ATOP);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        v.setBackground(getResources().getDrawable(R.drawable.food_back_style));
+                        end_date_tv.setBackground(getResources().getDrawable(R.drawable.border_left_right));
+                        //v.getBackground().clearColorFilter();
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        break;
+                }
+
+                return false;
+            }
+        });
+
+
         if (title.length() > 12)
             title_tv.setText(String.format("%s..", title.substring(0, 10)));
         else
@@ -83,6 +95,8 @@ public class Food extends ConstraintLayout {
                     intent.putExtra("quantity", ((Food) v).getQuantity());
                     intent.putExtra("start_date", ((Food) v).getStart_date());
                     intent.putExtra("end_date", ((Food) v).getEnd_date());
+                    intent.putExtra("id", ((Food) v).getFoodId());
+                    intent.putExtra("fridgeId", ((Food) v).getFridgeId());
 
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     v.getContext().startActivity(intent);
@@ -90,6 +104,14 @@ public class Food extends ConstraintLayout {
             }
         });
 
+    }
+
+    private int getFoodId() {
+        return this.foodid;
+    }
+
+    public int getFridgeId() {
+        return fridgeId;
     }
 
     public String getQuantity() {
@@ -107,4 +129,6 @@ public class Food extends ConstraintLayout {
     public String getStart_date() {
         return start_date;
     }
+    public void setFoodId(int id){ this.foodid = id;}
+
 }

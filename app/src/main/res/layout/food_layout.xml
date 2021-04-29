@@ -24,7 +24,7 @@
 
     <TextView
         android:id="@+id/food_quantity"
-        android:layout_width="wrap_content"
+        android:layout_width="130dp"
         android:layout_height="0dp"
         android:background="@drawable/border_left_right"
         android:gravity="center|center_vertical"
