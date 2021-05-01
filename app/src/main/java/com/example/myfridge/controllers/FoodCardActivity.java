@@ -28,8 +28,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Calendar;
 
-import static com.example.myfridge.controllers.MainActivity.FRIDGES_FILE_NAME;
-import static com.example.myfridge.controllers.MainActivity.appCompatActivity;
 import static java.lang.Integer.parseInt;
 
 public class FoodCardActivity extends AppCompatActivity {
@@ -58,7 +56,7 @@ public class FoodCardActivity extends AppCompatActivity {
         ImageButton deleteFood = findViewById(R.id.delete_food);
         ImageButton undo = findViewById(R.id.undo_food);
         ImageButton back = findViewById(R.id.backToFridgeActivity);
-        Button save = findViewById(R.id.save);
+        Button save = findViewById(R.id.saveProfile);
 
         title.setText(intent.getStringExtra("title"));
         title.setTag(title.getText().toString());
@@ -144,7 +142,7 @@ public class FoodCardActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
-                String date = day + "." + month + "." + year;
+                String date = String.format("%d.%d.%d", day, month, year);
                 if (is_start_date_set)
                     start_date.setText(date);
                 else
@@ -183,7 +181,7 @@ public class FoodCardActivity extends AppCompatActivity {
                             while ((line = in.readLine()) != null) {
                                 String[] attrs = line.split(";");
 
-                                if (attrs[0].equals("" + id)) {
+                                if (attrs[0].equals(String.format("%d", id))) {
                                     continue;
                                 }
                                 if (Integer.parseInt(attrs[0]) > id)
@@ -215,7 +213,43 @@ public class FoodCardActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    BufferedReader in = new BufferedReader(new InputStreamReader(
+                            getApplicationContext().openFileInput(String.format("%d.csv", fridgeId))));
+                    String line;
+                    StringBuilder rows = new StringBuilder();
+                    while ((line = in.readLine()) != null) {
+                        String[] attrs = line.split(";");
 
+                        if (attrs[0].equals(String.format("%d", id))) {
+                            //id; name; quantity; end_date;start_date;smth
+                            attrs[1] = title.getText().toString();
+                            attrs[2] = quantity.getText().toString();
+                            attrs[3] = end_date.getText().toString();
+                            attrs[4] = start_date.getText().toString();
+                        }
+                        if (Integer.parseInt(attrs[0]) > id)
+                            attrs[0] = "" + (Integer.parseInt(attrs[0]) - 1);
+
+                        rows.append(String.format("%d;%s;%s;%s;%s;\n", parseInt(attrs[0]), attrs[1], attrs[2], attrs[3], attrs[4]));
+                    }
+
+                    FileOutputStream fos = getApplicationContext().openFileOutput(String.format("%d.csv", fridgeId), MODE_PRIVATE);
+                    fos.write(rows.toString().getBytes());
+                    in.close();
+                    fos.close();
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                finish();
+            }
+        });
     }
 
 

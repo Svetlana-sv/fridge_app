@@ -69,7 +69,7 @@ public class FoodActivity extends AppCompatActivity {
         this.input = (SearchView) findViewById(R.id.food_search);
         this.inputBar = findViewById(R.id.inputBar);
         ImageButton cook = findViewById(R.id.cook);
-        Button addFoodBtn = (Button) findViewById(R.id.save);
+        Button addFoodBtn = (Button) findViewById(R.id.saveProfile);
         TextView title_fridge_name = (TextView) findViewById(R.id.frigde_name_title_food_card);
 
          myTouch = new View.OnTouchListener() {
@@ -93,17 +93,6 @@ public class FoodActivity extends AppCompatActivity {
         backToMain.setOnTouchListener(myTouch);
         addFoodBtn.setOnTouchListener(myTouch);
         cook.setOnTouchListener(myTouch);
-//        ArrayList<String> products = intent.getStringArrayListExtra("products");
-
-
-
-//        for (String str : products) {
-//            String[] row = str.split(";");
-//            //id; name; quantity; end_date;start_date;smth
-//            food_layout.addView(new Food(getContext(), row[1], row[2], row[3], row[4]));
-//        }
-
- //       readFridgeData();
 
         input.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -122,17 +111,6 @@ public class FoodActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-//        Handler handler = new Handler() {
-//            @Override
-//            public void handleMessage(Message msg) {
-//                for (Food f : food) {
-//                    food_layout.addView(f);
-//                }
-//                progressBar.setVisibility(View.GONE);
-//            }
-//        };
-
 
         addFoodBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,15 +161,12 @@ public class FoodActivity extends AppCompatActivity {
                         && !input_name.getText().toString().contains("\"")
                         && !input_name.getText().toString().contains("'")
                         && !input_name.getText().toString().contains(";")
-                        //&& DateStartBtn.getText().toString().contains(".")
                         && DateEndBtn.getText().toString().contains(".")) {
                     addNewFood(input_name.getText().toString(), DateStartBtn.getText().toString(), DateEndBtn.getText().toString(), input_quantity.getText().toString());
                     dialog.cancel();
                 } else {
                     input_name.setHintTextColor(ResourcesCompat.getColor(getResources(), R.color.errorColor, null));
                     input_name.setTypeface(input_name.getTypeface(), Typeface.BOLD);
-                    //DateStartBtn.setTextColor(ResourcesCompat.getColor(getResources(), R.color.errorColor, null));
-                    //DateStartBtn.setTypeface(input_name.getTypeface(), Typeface.BOLD);
                     DateEndBtn.setTextColor(ResourcesCompat.getColor(getResources(), R.color.errorColor, null));
                     DateEndBtn.setTypeface(input_name.getTypeface(), Typeface.BOLD);
                 }
@@ -249,7 +224,7 @@ public class FoodActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
-                String date = day + "." + month + "." + year;
+                String date = String.format("%d.%d.%d", day, month, year);
                 if (is_start_date_set)
                     DateStartBtn.setText(date);
                 else
@@ -281,12 +256,12 @@ public class FoodActivity extends AppCompatActivity {
             public synchronized void run() {
                 try {
                     BufferedReader in = new BufferedReader(new InputStreamReader(
-                            getApplicationContext().openFileInput(id + ".csv")));
+                            getApplicationContext().openFileInput(String.format("%d.csv", id))));
                     String line;
                     String lastAppendedRow = null;
                     StringBuilder rows = new StringBuilder();
                     while ((line = in.readLine()) != null) {
-                        rows.append(line + "\n");
+                        rows.append(String.format("%s\n", line));
                         lastAppendedRow = line;
                     }
                     if (rows.length() == 0) {
@@ -299,9 +274,10 @@ public class FoodActivity extends AppCompatActivity {
                         rows.append(String.format("%d;%s;%s;%s;%s;", parseInt(attrs[0]) + 1, name, quantity,end_date, start_date));
                         fd.setFoodId(parseInt(attrs[0]) + 1);
                     }
+
                     in.close();
 
-                    FileOutputStream fos = openFileOutput(id + ".csv", MODE_PRIVATE);
+                    FileOutputStream fos = openFileOutput(String.format("%d.csv", id), MODE_PRIVATE);
                     fos.write(rows.toString().getBytes());
                     fos.close();
 
@@ -322,8 +298,6 @@ public class FoodActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        //thread.interrupt();
-        //Toast.makeText(getApplicationContext(), "Stopped", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -331,23 +305,15 @@ public class FoodActivity extends AppCompatActivity {
         super.onDestroy();
         food_layout.removeAllViews();
         System.gc();
-        //Toast.makeText(getApplicationContext(), "DESTROY", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-//        for (int i = LL_CONST_CHILD; i < food_layout.getChildCount() + 1; i++) {
-//            food_layout.removeViewAt(i);
-//        }
-        //if (removeViewId != - 1) food_layout.getChildAt(removeViewId + LL_CONST_CHILD).setVisibility(View.GONE);
-        //else
         readFridgeData();
-        //Toast.makeText(getApplicationContext(), "RESUMED", Toast.LENGTH_SHORT).show();
     }
 
     private void readFridgeData(){
-        //for (int i = LL_CONST_CHILD; i<food_layout.getChildCount();i++)
         food_layout.removeAllViews();
         food_layout.addView(inputBar);
         Food columns = new Food(getContext(), getResources().getString(R.string.TITLE_COLUMN),
@@ -363,19 +329,18 @@ public class FoodActivity extends AppCompatActivity {
 
         try {
             BufferedReader food_in = new BufferedReader(new InputStreamReader(
-                    getContext().openFileInput(id+".csv")));
+                    getContext().openFileInput(String.format("%d.csv", id))));
             String line;
             while ((line = food_in.readLine()) != null) {
                 String[] row = line.split(";");
 
-                //id; name; quantity; end_date;start_date;smth
                 food_layout.addView(new Food(getContext(), row[1], row[2], row[3], row[4],id,Integer.parseInt(row[0])));
             }
 
         } catch (FileNotFoundException e) {
             try {
                 BufferedWriter out = new BufferedWriter(new OutputStreamWriter(
-                        getContext().openFileOutput(id+".csv", MODE_PRIVATE)));
+                        getContext().openFileOutput(String.format("%d.csv", id), MODE_PRIVATE)));
                 out.close();
             } catch (IOException ioException) {
                 ioException.printStackTrace();

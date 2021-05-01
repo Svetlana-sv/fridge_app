@@ -53,13 +53,10 @@ public class fridge extends ConstraintLayout{
         this.name = name;
         this.id = id;
 
-        //AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(getContext(),
-                //R.animator.click_anim);
-        //set.setTarget(this);
         int colorFrom = getResources().getColor(R.color.secondBackColor);
         int colorTo = getResources().getColor(R.color.primaryBarColor);
         ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
-        colorAnimation.setDuration(250); // milliseconds
+       // colorAnimation.setDuration(1000); // milliseconds
         colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 
             @Override
@@ -69,41 +66,37 @@ public class fridge extends ConstraintLayout{
 
         });
 
-
-
+        this.setBackground(getResources().getDrawable(R.drawable.anim_drawable));
+        final TransitionDrawable background = (TransitionDrawable) fridge.this.getBackground();
 
         this.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 showDialog();
-
                 return true;
             }
         });
-        this.setBackground(getResources().getDrawable(R.drawable.anim_drawable));
-        final TransitionDrawable background = (TransitionDrawable) fridge.this.getBackground();
 
         this.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 int eventAction = event.getAction();
-
                 switch (eventAction) {
                     case MotionEvent.ACTION_DOWN:
-                        background.startTransition(300);
-                        //background.startTransition(300);
-                        //colorAnimation.start();
-                        //set.start();
-                        //v.startAnimation(animAlpha);
-                        //v.setBackground(getResources().getDrawable(R.drawable.food_click_style));
-                        //v.setBackground(getResources().getDrawable(R.drawable.fridge_click_style));
-                        //v.getBackground().setColorFilter(getResources().getColor(R.color.primaryBarColor), PorterDuff.Mode.SRC_ATOP);
+                        Thread thread = new Thread(new Runnable() {
+                            public synchronized void run() {
+                                try {
+                                    background.startTransition(300);
+                                    wait(300);
+                                    background.reverseTransition(300);
+
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }});
+                        thread.start();
                         break;
                     case MotionEvent.ACTION_UP:
-                        background.reverseTransition(500);
-                        //background.reverseTransition(0);
-                        //v.setBackground(getResources().getDrawable(R.drawable.fridge_back));
-                        //v.getBackground().clearColorFilter();
                         break;
                     case MotionEvent.ACTION_MOVE:
                         break;
@@ -117,46 +110,23 @@ public class fridge extends ConstraintLayout{
             @Override
             public void onClick(View v) {
                 if (v.getClass() == fridge.class) {
-//                    background.startTransition(300);
-//                    Thread thread = new Thread(new Runnable() {
-//                        public synchronized void run() {
-//                            try {
-//                                wait(300);
-//                                background.reverseTransition(0);
-//                            } catch (InterruptedException e) {
-//                                e.printStackTrace();
-//                            }
-//                        }
-//                    });
-//                    thread.start();
-//                    ArrayList<String> products = new ArrayList<String>();
-//                    try {
-//                        BufferedReader food_in = new BufferedReader(new InputStreamReader(
-//                                getContext().openFileInput(((fridge) v).id+".csv")));
-//                        String line;
-//                        while ((line = food_in.readLine()) != null) {
-//                            products.add(line);
-//                        }
-//
-//                    } catch (FileNotFoundException e) {
-//                        try {
-//                            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(
-//                                getContext().openFileOutput((((fridge) v).id+".csv"), MODE_PRIVATE)));
-//                            out.close();
-//                        } catch (IOException ioException) {
-//                            ioException.printStackTrace();
-//                        }
-//                    } catch (IOException e) {
-//                    }
+                    Thread thread = new Thread(new Runnable() {
+                        public synchronized void run() {
+                            try {
+                                wait(300);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            Intent intent = new Intent(v.getContext(), FoodActivity.class);
+                                intent.putExtra("name", ((fridge) v).name);
+                                intent.putExtra("id", ((fridge) v).id);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                v.getContext().startActivity(intent);
 
 
-                    Intent intent = new Intent(v.getContext(), FoodActivity.class);
-                    intent.putExtra("name", ((fridge) v).name);
-                    intent.putExtra("id", ((fridge) v).id);
-//                    intent.putStringArrayListExtra("products",products);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    v.getContext().startActivity(intent);
-
+                        }
+                    });
+                    thread.start();
                 }
             }
         });
@@ -173,7 +143,7 @@ public class fridge extends ConstraintLayout{
                 String[] attrs = line.split(";");
                 if (attrs[1].equals(this.name)) continue;
                 if (Integer.parseInt(attrs[0]) > this.id)
-                    attrs[0] = "" + (Integer.parseInt(attrs[0]) - 1);
+                    attrs[0] = String.format("%d", Integer.parseInt(attrs[0]) - 1);
 
                 rows.append(String.format("%s;%s;\n", attrs[0], attrs[1]));
             }
@@ -221,7 +191,7 @@ public class fridge extends ConstraintLayout{
     private void removeFridgeView() {
         ((LinearLayout) this.getParent()).removeView(this);
         dropFridgeInfo();
-        getContext().deleteFile(this.id+".csv");
+        getContext().deleteFile(String.format("%d.csv", this.id));
     }
 
     public String getName() {

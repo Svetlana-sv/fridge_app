@@ -2,8 +2,10 @@ package com.example.myfridge.controllers;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -53,11 +55,35 @@ public class MainActivity extends AppCompatActivity {
         this.profileBu = (ImageButton) findViewById(R.id.profile);
         this.mailBu = (ImageButton) findViewById(R.id.mail);
         this.fridges_layout = (LinearLayout) findViewById(R.id.fridges);
-        this.createFridge = (Button) findViewById(R.id.save);
+        this.createFridge = (Button) findViewById(R.id.saveProfile);
         this.fridgesSV = (ScrollView) findViewById(R.id.foodSV);
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         layoutParams.setMargins(0, 10, 0, 30);
 
+
+        View.OnTouchListener myTouch = new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int eventAction = event.getAction();
+                switch (eventAction) {
+                    case MotionEvent.ACTION_DOWN:
+                        v.getBackground().setColorFilter(getResources().getColor(R.color.primaryBarColor), PorterDuff.Mode.SRC_ATOP);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        v.getBackground().clearColorFilter();
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        break;
+                }
+
+                return false;
+            }
+        };
+
+        cookBu.setOnTouchListener(myTouch);
+        profileBu.setOnTouchListener(myTouch);
+        mailBu.setOnTouchListener(myTouch);
+        createFridge.setOnTouchListener(myTouch);
 
         createFridge.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 rows.append(String.format("%d;%s;", Integer.parseInt(attrs[0]) + 1, fridgeName));
             }
             in.close();
+
 
             FileOutputStream fos = openFileOutput(FRIDGES_FILE_NAME, MODE_PRIVATE);
             fos.write(rows.toString().getBytes());

@@ -12,19 +12,20 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/logo2"
         android:supportsRtl="true"
+        android:screenOrientation="portrait"
         android:theme="@style/Theme.MyFridge">
-        <activity android:name=".controllers.Profile"></activity>
-        <activity android:name=".controllers.FoodActivity"></activity>
-        <activity android:name=".controllers.Settings"></activity>
+        <activity android:name=".controllers.Profile" android:screenOrientation="portrait"></activity>
+        <activity android:name=".controllers.FoodActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".controllers.Settings" android:screenOrientation="portrait"></activity>
 
-        <activity android:name=".controllers.MainActivity">
+        <activity android:name=".controllers.MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controllers.FoodCardActivity" />
+        <activity android:name=".controllers.FoodCardActivity" android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="preloaded_fonts"

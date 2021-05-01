@@ -130,7 +130,7 @@
         </LinearLayout>
     </ScrollView>
     <Button
-        android:id="@+id/save"
+        android:id="@+id/saveProfile"
         android:layout_width="230dp"
         android:layout_height="35dp"
         android:layout_marginBottom="15dp"
