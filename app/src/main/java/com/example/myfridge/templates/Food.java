@@ -1,8 +1,10 @@
 package com.example.myfridge.templates;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
+import android.graphics.drawable.TransitionDrawable;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -14,14 +16,14 @@ import com.example.myfridge.controllers.FoodCardActivity;
 
 public class Food extends ConstraintLayout {
 
-    private String title;
-    private String quantity;
-    private String end_date;
-    private String start_date;
-    private int fridgeId;
+    private final String title;
+    private final String quantity;
+    private final String end_date;
+    private final String start_date;
+    private final int fridgeId;
     private int foodid;
 
-    public Food(Context context, String title, String quantity, String end_date, String start_date,int id,int foodid) {
+    public Food(Context context, String title, String quantity, String end_date, String start_date, int id, int foodid) {
         super(context);
         inflate(context, R.layout.food_layout, this);
 
@@ -46,26 +48,77 @@ public class Food extends ConstraintLayout {
 //                parseException.printStackTrace();
 //            }
 //        }
-        TextView title_tv = (TextView) findViewById(R.id.food_title);
-        TextView end_date_tv = (TextView) findViewById(R.id.food_quantity);
-        TextView quantity_tv = (TextView) findViewById(R.id.food_end_date);
+        TextView title_tv = findViewById(R.id.food_title);
+        TextView end_date_tv = findViewById(R.id.food_quantity);
+        TextView quantity_tv = findViewById(R.id.food_end_date);
 
-        if (end_date.contains("."))
+//        if (end_date.contains("."))
+//            this.setOnTouchListener(new View.OnTouchListener() {
+//                @Override
+//                public boolean onTouch(View v, MotionEvent event) {
+//                    int eventAction = event.getAction();
+//
+//                    switch (eventAction) {
+//                        case MotionEvent.ACTION_DOWN:
+//                            v.setBackground(getResources().getDrawable(R.drawable.food_click_style));
+//                            end_date_tv.setBackground(null);
+//                            //v.getBackground().setColorFilter(getResources().getColor(R.color.primaryBarColor), PorterDuff.Mode.SRC_ATOP);
+//                            break;
+//                        case MotionEvent.ACTION_UP:
+//                            v.setBackground(getResources().getDrawable(R.drawable.food_back_style));
+//                            end_date_tv.setBackground(getResources().getDrawable(R.drawable.border_left_right));
+//                            //v.getBackground().clearColorFilter();
+//                            break;
+//                        case MotionEvent.ACTION_MOVE:
+//                            break;
+//                    }
+//
+//                    return false;
+//                }
+//            });
+
+        int colorFrom = getResources().getColor(R.color.secondBackColor);
+        int colorTo = getResources().getColor(R.color.primaryBarColor);
+        ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
+        // colorAnimation.setDuration(1000); // milliseconds
+        colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+
+            @Override
+            public void onAnimationUpdate(ValueAnimator animator) {
+                Food.this.setBackgroundColor((int) animator.getAnimatedValue());
+            }
+
+        });
+
+        this.setBackground(getResources().getDrawable(R.drawable.food_anim));
+        final TransitionDrawable background = (TransitionDrawable) Food.this.getBackground();
+
+
         this.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 int eventAction = event.getAction();
-
                 switch (eventAction) {
                     case MotionEvent.ACTION_DOWN:
-                        v.setBackground(getResources().getDrawable(R.drawable.food_click_style));
-                        end_date_tv.setBackground(null);
-                        //v.getBackground().setColorFilter(getResources().getColor(R.color.primaryBarColor), PorterDuff.Mode.SRC_ATOP);
+
+                        Thread thread = new Thread(new Runnable() {
+                            public synchronized void run() {
+                                try {
+
+                                    background.startTransition(300);
+                                    wait(300);
+                                    background.reverseTransition(300);
+
+
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+
+                        thread.start();
                         break;
                     case MotionEvent.ACTION_UP:
-                        v.setBackground(getResources().getDrawable(R.drawable.food_back_style));
-                        end_date_tv.setBackground(getResources().getDrawable(R.drawable.border_left_right));
-                        //v.getBackground().clearColorFilter();
                         break;
                     case MotionEvent.ACTION_MOVE:
                         break;
@@ -74,7 +127,6 @@ public class Food extends ConstraintLayout {
                 return false;
             }
         });
-
 
         if (title.length() > 12)
             title_tv.setText(String.format("%s..", title.substring(0, 10)));
@@ -129,6 +181,9 @@ public class Food extends ConstraintLayout {
     public String getStart_date() {
         return start_date;
     }
-    public void setFoodId(int id){ this.foodid = id;}
+
+    public void setFoodId(int id) {
+        this.foodid = id;
+    }
 
 }

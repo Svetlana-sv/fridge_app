@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/cook"
+            android:id="@+id/TocookBook"
             android:layout_width="35dp"
             android:layout_height="32dp"
             android:layout_marginStart="12dp"
@@ -46,13 +46,13 @@
             android:text="@string/app_name"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/cook"
+            app:layout_constraintEnd_toStartOf="@+id/TocookBook"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/backToFridgeActivity"
+            android:id="@+id/backToSettings"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginEnd="12dp"
@@ -78,7 +78,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:id="@+id/foodSV"
+        android:id="@+id/cookSV"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:paddingLeft="0dp"
@@ -130,7 +130,7 @@
         </LinearLayout>
     </ScrollView>
     <Button
-        android:id="@+id/saveProfile"
+        android:id="@+id/EditReciept"
         android:layout_width="230dp"
         android:layout_height="35dp"
         android:layout_marginBottom="15dp"

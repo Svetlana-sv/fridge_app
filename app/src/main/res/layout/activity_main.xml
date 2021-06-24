@@ -7,7 +7,7 @@
     tools:context=".controllers.MainActivity">
 
     <Button
-        android:id="@+id/saveProfile"
+        android:id="@+id/EditReciept"
         android:layout_width="230dp"
         android:layout_height="35dp"
         android:layout_marginBottom="15dp"
@@ -41,40 +41,40 @@
             android:layout_marginEnd="12dp"
             android:layout_marginRight="12dp"
             android:background="@drawable/profile"
-            app:layout_constraintBottom_toBottomOf="@+id/cook"
+            app:layout_constraintBottom_toBottomOf="@+id/TocookBook"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/toolbar"
-            app:layout_constraintTop_toTopOf="@+id/cook"
+            app:layout_constraintTop_toTopOf="@+id/TocookBook"
             app:layout_constraintVertical_bias="0.0" />
 
         <ImageButton
-            android:id="@+id/cook"
-            android:scaleType="fitCenter"
+            android:id="@+id/TocookBook"
             android:layout_width="38dp"
             android:layout_height="35dp"
             android:background="@drawable/cook_book"
+            android:scaleType="fitCenter"
             android:tint="@color/black"
             app:layout_constraintBottom_toBottomOf="@+id/toolbar"
             app:layout_constraintEnd_toStartOf="@+id/profile"
-            app:layout_constraintHorizontal_bias="0.724"
+            app:layout_constraintHorizontal_bias="0.97"
             app:layout_constraintStart_toStartOf="@+id/toolbar"
             app:layout_constraintTop_toTopOf="@+id/toolbar"
             app:layout_constraintVertical_bias="0.523" />
 
-        <ImageButton
-            android:id="@+id/mail"
-            android:layout_width="38dp"
-            android:layout_height="35dp"
-            android:background="@drawable/mail"
-            android:scaleType="fitCenter"
-            android:tint="@color/black"
-            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-            app:layout_constraintEnd_toStartOf="@+id/profile"
-            app:layout_constraintHorizontal_bias="0.549"
-            app:layout_constraintStart_toEndOf="@+id/cook"
-            app:layout_constraintTop_toTopOf="@+id/toolbar"
-            app:layout_constraintVertical_bias="0.523" />
+<!--        <ImageButton-->
+<!--            android:id="@+id/mail"-->
+<!--            android:layout_width="38dp"-->
+<!--            android:layout_height="35dp"-->
+<!--            android:background="@drawable/mail"-->
+<!--            android:scaleType="fitCenter"-->
+<!--            android:tint="@color/black"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/toolbar"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/profile"-->
+<!--            app:layout_constraintHorizontal_bias="0.549"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/cook"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/toolbar"-->
+<!--            app:layout_constraintVertical_bias="0.523" />-->
 
         <TextView
             android:id="@+id/frigde_name_title_food_card"
@@ -86,7 +86,7 @@
             android:text="@string/app_name"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/cook"
+            app:layout_constraintEnd_toStartOf="@+id/TocookBook"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -94,14 +94,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
-        android:id="@+id/foodSV"
+        android:id="@+id/cookSV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="56dp"
         android:layout_marginBottom="5dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/saveProfile"
+        app:layout_constraintBottom_toTopOf="@+id/EditReciept"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +109,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
-            android:id="@+id/fridges"
+            android:id="@+id/reciepts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />

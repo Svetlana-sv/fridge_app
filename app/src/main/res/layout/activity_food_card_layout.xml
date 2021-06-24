@@ -51,7 +51,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/backToFridgeActivity"
+            android:id="@+id/backToSettings"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginEnd="12dp"
@@ -98,7 +98,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/PRODUCT_NAME"
-            app:layout_constraintBottom_toTopOf="@+id/saveProfile"
+            app:layout_constraintBottom_toTopOf="@+id/EditReciept"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.2"
             app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +106,7 @@
             app:layout_constraintVertical_bias="0.15" />
 
         <EditText
-            android:id="@+id/food_card_title"
+            android:id="@+id/editTextTextPersonName4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -120,7 +120,7 @@
             app:layout_constraintTop_toBottomOf="@+id/food_card_t" />
 
         <EditText
-            android:id="@+id/food_card_quantity"
+            android:id="@+id/editTextTextPersonName5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -141,8 +141,8 @@
             android:text="@string/QUANTITI_COLUMN"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/food_card_title"
-            app:layout_constraintTop_toBottomOf="@+id/food_card_title" />
+            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName4"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
 
         <TextView
             android:id="@+id/textView4"
@@ -152,8 +152,8 @@
             android:text="@string/PRODUCTION_DATE"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/food_card_quantity"
-            app:layout_constraintTop_toBottomOf="@+id/food_card_quantity" />
+            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName5"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
 
 
         <TextView
@@ -164,7 +164,7 @@
             android:text="@string/END_DATE_INPUT"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/food_card_quantity"
+            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName5"
             app:layout_constraintTop_toBottomOf="@+id/food_card_prod_date" />
 
         <TextView
@@ -182,12 +182,12 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/food_card_quantity"
+            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName5"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
         <Button
-            android:id="@+id/saveProfile"
+            android:id="@+id/EditReciept"
             android:layout_width="230dp"
             android:layout_height="35dp"
             android:background="@drawable/primary_button"

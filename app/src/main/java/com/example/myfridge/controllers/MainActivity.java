@@ -2,10 +2,8 @@ package com.example.myfridge.controllers;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -34,7 +32,7 @@ import java.io.OutputStreamWriter;
 public class MainActivity extends AppCompatActivity {
 
     private Button createFridge;
-    private ImageButton mailBu;
+    //    private ImageButton mailBu;
     private ImageButton profileBu;
     private ImageButton cookBu;
     private LinearLayout fridges_layout;
@@ -51,39 +49,39 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         appCompatActivity = this;
-        this.cookBu = (ImageButton) findViewById(R.id.cook);
-        this.profileBu = (ImageButton) findViewById(R.id.profile);
-        this.mailBu = (ImageButton) findViewById(R.id.mail);
-        this.fridges_layout = (LinearLayout) findViewById(R.id.fridges);
-        this.createFridge = (Button) findViewById(R.id.saveProfile);
-        this.fridgesSV = (ScrollView) findViewById(R.id.foodSV);
+        this.cookBu = findViewById(R.id.TocookBook);
+        this.profileBu = findViewById(R.id.profile);
+//        this.mailBu = (ImageButton) findViewById(R.id.mail);
+        this.fridges_layout = findViewById(R.id.reciepts);
+        this.createFridge = findViewById(R.id.EditReciept);
+        this.fridgesSV = findViewById(R.id.cookSV);
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         layoutParams.setMargins(0, 10, 0, 30);
 
 
-        View.OnTouchListener myTouch = new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                int eventAction = event.getAction();
-                switch (eventAction) {
-                    case MotionEvent.ACTION_DOWN:
-                        v.getBackground().setColorFilter(getResources().getColor(R.color.primaryBarColor), PorterDuff.Mode.SRC_ATOP);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        v.getBackground().clearColorFilter();
-                        break;
-                    case MotionEvent.ACTION_MOVE:
-                        break;
-                }
+//        View.OnTouchListener myTouch = new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                int eventAction = event.getAction();
+//                switch (eventAction) {
+//                    case MotionEvent.ACTION_DOWN:
+//                        v.getBackground().setColorFilter(getResources().getColor(R.color.primaryBarColor), PorterDuff.Mode.SRC_ATOP);
+//                        break;
+//                    case MotionEvent.ACTION_UP:
+//                        v.getBackground().clearColorFilter();
+//                        break;
+//                    case MotionEvent.ACTION_MOVE:
+//                        break;
+//                }
+//
+//                return false;
+//            }
+//        };
 
-                return false;
-            }
-        };
-
-        cookBu.setOnTouchListener(myTouch);
-        profileBu.setOnTouchListener(myTouch);
-        mailBu.setOnTouchListener(myTouch);
-        createFridge.setOnTouchListener(myTouch);
+        cookBu.setOnTouchListener(TouchListener.touchListener);
+        profileBu.setOnTouchListener(TouchListener.touchListener);
+//        mailBu.setOnTouchListener(myTouch);
+        createFridge.setOnTouchListener(TouchListener.touchListener);
 
         createFridge.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,15 +92,15 @@ public class MainActivity extends AppCompatActivity {
         cookBu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "go to cook", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, CookBook.class));
             }
         });
-        mailBu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "go to mail", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        mailBu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getApplicationContext(), "go to mail", Toast.LENGTH_SHORT).show();
+//            }
+//        });
         profileBu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -195,11 +193,11 @@ public class MainActivity extends AppCompatActivity {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_activity);
         dialog.getWindow().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.fridge_back, null));
-        TextView title = (TextView) dialog.findViewById(R.id.drop_dialog_title);
+        TextView title = dialog.findViewById(R.id.drop_dialog_title);
 
-        EditText input_name = (EditText) dialog.findViewById(R.id.dialog_input_quantity);
-        Button OK = (Button) dialog.findViewById(R.id.dialog_add_food_accept);
-        Button BACK = (Button) dialog.findViewById(R.id.dialog_add_food_reject);
+        EditText input_name = dialog.findViewById(R.id.dialog_input_quantity);
+        Button OK = dialog.findViewById(R.id.dialog_add_food_accept);
+        Button BACK = dialog.findViewById(R.id.dialog_add_food_reject);
 
 
         OK.setOnClickListener(new View.OnClickListener() {
@@ -207,8 +205,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (input_name.getText().length() > 0
                         && !input_name.getText().toString().contains("\"")
-                            && !input_name.getText().toString().contains("'")
-                                && !input_name.getText().toString().contains(";")) {
+                        && !input_name.getText().toString().contains("'")
+                        && !input_name.getText().toString().contains(";")) {
                     fridgeName = "" + input_name.getText();
                     addNewFridge();
                     dialog.cancel();

@@ -33,7 +33,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/back"
+            android:id="@+id/backToCook"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginEnd="12dp"
@@ -83,7 +83,7 @@
         android:ems="10"
         android:gravity="center_horizontal"
         android:inputType="textPersonName"
-        android:text="@string/name"
+        android:hint="@string/Name"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -115,7 +115,7 @@
         android:layout_height="46dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/secondName"
+        android:hint="@string/HintThirdName"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -126,10 +126,9 @@
         android:id="@+id/editTextTextPersonName"
         android:layout_width="244dp"
         android:layout_height="47dp"
-
+        android:hint="@string/SurnameTextHint"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/surname"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -146,13 +145,13 @@
         app:layout_constraintTop_toBottomOf="@+id/profilePic" />
 
     <EditText
-        android:id="@+id/food_card_title"
+        android:id="@+id/editTextTextPersonName4"
         android:layout_width="244dp"
         android:layout_height="46dp"
         android:ems="10"
         android:gravity="center_horizontal"
         android:inputType="textPersonName"
-        android:text="@string/email"
+        android:hint="@string/Email"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -171,13 +170,13 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
 
     <EditText
-        android:id="@+id/food_card_quantity"
+        android:id="@+id/editTextTextPersonName5"
         android:layout_width="244dp"
         android:layout_height="46dp"
         android:ems="10"
         android:gravity="center_horizontal"
         android:inputType="textPersonName"
-        android:text="@string/password"
+        android:hint="@string/password"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -193,10 +192,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/food_card_title" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
 
     <Button
-        android:id="@+id/saveProfile"
+        android:id="@+id/EditReciept"
         android:layout_width="230dp"
         android:layout_height="35dp"
         android:layout_marginBottom="15dp"

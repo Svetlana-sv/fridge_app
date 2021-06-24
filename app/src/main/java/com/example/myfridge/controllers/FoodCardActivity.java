@@ -49,14 +49,14 @@ public class FoodCardActivity extends AppCompatActivity {
 
         this.id = intent.getIntExtra("id", -1);
         this.fridgeId = intent.getIntExtra("fridgeId", -1);
-        title = findViewById(R.id.food_card_title);
-        quantity = findViewById(R.id.food_card_quantity);
+        title = findViewById(R.id.editTextTextPersonName4);
+        quantity = findViewById(R.id.editTextTextPersonName5);
         end_date = findViewById(R.id.food_card_end_date);
         start_date = findViewById(R.id.food_card_prod_date);
         ImageButton deleteFood = findViewById(R.id.delete_food);
         ImageButton undo = findViewById(R.id.undo_food);
-        ImageButton back = findViewById(R.id.backToFridgeActivity);
-        Button save = findViewById(R.id.saveProfile);
+        ImageButton back = findViewById(R.id.backToSettings);
+        Button save = findViewById(R.id.EditReciept);
 
         title.setText(intent.getStringExtra("title"));
         title.setTag(title.getText().toString());
@@ -166,10 +166,10 @@ public class FoodCardActivity extends AppCompatActivity {
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.drop_fridge_dialog);
                 dialog.getWindow().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.fridge_back, null));
-                TextView drop_food_title = (TextView) dialog.findViewById(R.id.drop_dialog_title);
-                drop_food_title.setText(String.format("%s %s ?", drop_food_title.getText(),FoodCardActivity.this.title.getText()));
-                Button OK = (Button) dialog.findViewById(R.id.drop_dialog_accept);
-                Button BACK = (Button) dialog.findViewById(R.id.drop_dialog_reject);
+                TextView drop_food_title = dialog.findViewById(R.id.drop_dialog_title);
+                drop_food_title.setText(String.format("%s %s ?", drop_food_title.getText(), FoodCardActivity.this.title.getText()));
+                Button OK = dialog.findViewById(R.id.drop_dialog_accept);
+                Button BACK = dialog.findViewById(R.id.drop_dialog_reject);
                 OK.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
