@@ -1,5 +1,9 @@
 # fridge_web_app
 
+## Production source
+```
+folder - dist
+```
 ## Project setup
 ```
 npm install
