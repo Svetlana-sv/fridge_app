@@ -27,8 +27,8 @@
         </div>
     </div>
     <div class="home__flex-container column" style="margin-bottom: 50px">
-        <h1>Участники прокета (191-361)</h1>
-        <div>Светлкана Каменских</div>
+        <h1>Участники проекта (191-361)</h1>
+        <div>Светлана Каменских</div>
         <div>Егор Алексеев</div>
         <div>Кирилл Афанасьев</div>
     </div>
