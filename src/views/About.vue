@@ -1,10 +1,11 @@
 <template>
   <div class="web-app">
     <div class="header">
-      <h2>MyFridge</h2>
+      <h2>MyFridge, page: {{page+1}}</h2>
       <div class="nav">
         <img v-if="page===0" src="../assets/cook_book.png" @click="page=2" alt="toCookBook" width="40">
-        <img v-else src="../assets/back.png" @click="page=page-1" alt="toCookBook" width="40">
+        <img v-else-if="page===3" src="../assets/back.png" @click="page=2" alt="toCookBook" width="40">
+        <img v-else src="../assets/back.png" @click="page=0" alt="toCookBook" width="40">
       </div>
     </div>
     <!-- ---------------------------------FRIDGES-------------------------------------- -->
