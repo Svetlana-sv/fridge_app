@@ -203,7 +203,21 @@ span {
 .page6 footer span {
   margin: 50px 0 10px 0;
 }
-
+.main-content__grid{
+  display: grid;
+  width: 100%;
+  padding: 50px;
+  margin-bottom: 20px;
+  grid-row-gap: 80px;
+  grid-template-columns: repeat(auto-fill, 350px);
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.grid__img{
+  border: 1px solid black;
+  border-radius: 10px;
+}
 @media (max-width: 980px) {
   .page1 header {
     flex-direction: column;
